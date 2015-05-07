@@ -184,7 +184,7 @@ namespace Elasticsearch.Net.Connection.RequestHandlers
 			ElasticsearchResponse<Stream> streamResponse)
 		{
 			if (streamResponse.Response != null && !typeof(Stream).IsAssignableFrom(typeof(T)))
-#if ASPNETCORE50
+#if DNXCORE50
 				streamResponse.Response.Dispose();
 #else
 				streamResponse.Response.Close();

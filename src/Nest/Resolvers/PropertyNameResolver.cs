@@ -45,7 +45,7 @@ namespace Nest.Resolvers
 			if (CachedTypeLookups.TryGetValue(type, out attr))
 				return attr;
 
-#if ASPNETCORE50
+#if DNXCORE50
 			var attributes = type.GetTypeInfo().GetCustomAttributes(typeof (ElasticTypeAttribute), true);
 #else
 			var attributes = type.GetCustomAttributes(typeof(ElasticTypeAttribute), true);
@@ -175,7 +175,7 @@ namespace Nest.Resolvers
 		{
 			if (method.DeclaringType != typeof(Queryable) && method.DeclaringType != typeof(Enumerable))
 				return false;
-#if ASPNETCORE50
+#if DNXCORE50
 			return method.GetCustomAttribute(typeof(ExtensionAttribute)) != null;
 #else
 			return Attribute.GetCustomAttribute(method, typeof(ExtensionAttribute)) != null;
